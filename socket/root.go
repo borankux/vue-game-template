@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+const HeartBeat = time.Second * 1
+
 func initRoot(server *io.Server) {
 	server.OnConnect("/", func(conn io.Conn) error {
 		log.Printf("root:connected:%s\n", conn.ID())
@@ -28,7 +30,7 @@ func initRoot(server *io.Server) {
 	go func() {
 		for {
 			server.BroadcastToNamespace("/", "stats", getStats(server))
-			time.Sleep(time.Second * 2)
+			time.Sleep(HeartBeat)
 		}
 	}()
 }

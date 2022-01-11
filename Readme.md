@@ -1,0 +1,22 @@
+- User open the game page
+  - if there is not a room token or the token was invalid
+    - create a token for user
+    - show create room button
+      - user press create room
+        - create a room with user token
+        - enter the game-room page
+        - show the room controls
+        - wait for other users to join
+  - if the token is present and valid
+    - show game-room page
+    - initialize with room info
+    - broadcast all user info to the user
+  - if the room is full
+    - show start game button
+      - game starts
+        - step1: show cards
+          - choose cards and broadcast
+        - step2: shake the dice and broadcast
+        - step3: close your eyes
+        - step4: act on dice number
+        - step5: discuss
