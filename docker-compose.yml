@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  game:
+    build:
+      context: ./docker/app
+    volumes:
+      - .:/go/app/
+    ports:
+      - "8000:8000"
+  ui:
+    build:
+      context: ./docker/ui
+    volumes:
+      - ./ui:/app
+    ports:
+      - "8080:8080"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  redis-commander:
+    image: rediscommander/redis-commander
+    depends_on:
+      - redis
+    ports:
+      - "81:8081"
+    environment:
+      - REDIS_HOSTS=redis:redis:6379
